@@ -24,6 +24,10 @@ async function submit(e) {
      let res = await axios.post("http://127.0.0.1:8000/api/register",
       { name : name , email : email , password : password ,password_confirmation: passwordR,
       });
+      if(res.status ===200){
+        window.localStorage.setItem("email",email);
+        window.location.pathname="/";
+      }
      }
     
   }catch (err) {

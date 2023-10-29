@@ -4,6 +4,15 @@ body{
 }
 
 
+/*header*/
+.d-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/*signgUp */
 /*signgUp */
 
 .parent{
@@ -40,9 +49,10 @@ input::placeholder{
     align-items: center;
     margin-top: 40px;
 }
-.register button{
+.register button,.register-nav{
     outline: auto;
     border: none;
+    text-decoration: none;
     background-color: #86b7fe;
     padding: 10px 20px;
     color: white;
@@ -52,7 +62,12 @@ input::placeholder{
     border: 2px solid white;
     font-weight: bold;
 }
-.register button:hover{
+.register button:hover, .register-nav:hover {
     background-color: white;
     border: 2px solid #86b7fe;
+    color: #86b7fe;
+}
+.container {
+    margin: 0 auto;
+    padding: 0 90px;
 }
