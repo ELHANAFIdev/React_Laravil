@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import Header from './Header';
 
 const LogIn = () => {
     const [email, setEmail] = useState("");
@@ -36,6 +37,8 @@ const LogIn = () => {
   
   
     return (
+      <div>
+        <Header/>
       <div className='parent'>
         <div className='register'>
           <form onSubmit={submit}>           
@@ -63,6 +66,7 @@ const LogIn = () => {
           </form>
         </div>
       </div>
+    </div>
     )
 }
 

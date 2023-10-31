@@ -1,15 +1,26 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import Header from './Header';
+import React, { useEffect, useState } from 'react'
 
-const SignUp = () => {
-  const [name, setName] = useState("");
+const UpdateUser = () => {
+    const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordR, setPasswordR] = useState("");
   const [accept, setAccept] = useState(false);
   // const [emailEror, setEmailEror] = useState("");
   const [emailEror, setEmailEror] = useState();
+
+
+  const id=window.location.pathname.split("/").slice(-1)[0]
+
+  useEffect(()=>{
+    fetch(`http://127.0.0.1:8000/api/user/showbyid/${id}`)
+    .then(res=>res.json())
+    .then((data)=>{
+        setName(data[0].name);
+        setEmail(data[0].email);
+    })
+  })
 
 
 // console.log(flag);
@@ -22,12 +33,12 @@ async function submit(e) {
     }else flag=true;
    try{
      if(flag){
-     let res = await axios.post("http://127.0.0.1:8000/api/register",
+     let res = await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,
       { name : name , email : email , password : password ,password_confirmation: passwordR,
       });
       if(res.status ===200){
         window.localStorage.setItem("email",email);
-        window.location.pathname="/";
+        window.location.pathname="/dashboard/users";
       }
      }
     
@@ -39,12 +50,7 @@ async function submit(e) {
     }
 }
 
-
-
-
   return (
-    <div>
-      <Header/>
     <div className='parent'>
       <div className='register'>
         <form onSubmit={submit}>
@@ -81,14 +87,12 @@ async function submit(e) {
 
             {/* button  */}
           <div style={{ textAlign: "center" }}>
-            <button type='submit'>Register</button>
+            <button type='submit'>update</button>
           </div>
         </form>
       </div>
     </div>
-  </div>
-
   )
 }
 
-export default SignUp
+export default UpdateUser

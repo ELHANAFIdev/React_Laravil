@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './Component/App';
 import './Component/style.css'
 import {BrowserRouter} from 'react-router-dom'
+import './dashbord.css'
 
 
 
